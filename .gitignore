@@ -52,3 +52,4 @@ debug_highlight.py
 help.txt
 helpers
 test_smoke.py
+utils.py
