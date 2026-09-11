@@ -49,6 +49,7 @@ htmlcov/
 .vscode/
 
 debug_highlight.py
+utils.py
 help.txt
 helpers
 test_smoke.py
