@@ -20,13 +20,13 @@ wheels/
 .installed.cfg
 *.egg
 
-# Виртуальные окружения (твоё .venv на macOS)
+# Виртуальные окружения (твое .venv на macOS)
 .venv/
 venv/
 ENV/
 env/
 
-# Тестирование и отчёты (Allure, pytest)
+# Тестирование и отчеты (Allure, pytest)
 .pytest_cache/
 allure-results/
 allure-report/
@@ -53,3 +53,5 @@ help.txt
 helpers
 test_smoke.py
 utils.py
+tests/test_smoke.txt
+tests/test_email_field.txt
