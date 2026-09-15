@@ -1,0 +1,32 @@
+# pages/login_page.py
+
+import urls
+import allure
+from selenium.webdriver.support import expected_conditions as EC
+
+from pages.base_page import BasePage
+from locators import ModalLocators as ML
+from locators import LoginLocators as LL
+
+class LoginPage(BasePage):
+    @allure.step("Открываем страницу входа")
+    def open(self):
+        self.driver.get(urls.LOGIN_URL)
+
+    
+    @allure.step("Выполняем вход: email={email}, password={password}")
+    def login(self, email, password):
+        self.send_keys(LL.EMAIL_FIELD_LOG, email)
+        self.send_keys(LL.PASSWORD_FIELD_LOG, password)
+
+        self.wait.until(EC.invisibility_of_element_located(ML.OVERLAY))
+
+        button = self.wait.until(EC.element_to_be_clickable(LL.LOGIN_BUTTON))
+        self.driver.execute_script("arguments[0].click();", button)
+
+        start_url = self.driver.current_url
+        self.wait.until(EC.url_changes(start_url))
+
+       
+
+       
