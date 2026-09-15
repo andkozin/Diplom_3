@@ -55,3 +55,4 @@ test_smoke.py
 utils.py
 tests/test_smoke.txt
 tests/test_email_field.txt
+*.zip
