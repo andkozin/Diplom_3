@@ -12,7 +12,7 @@ from locators import LoginLocators as LL
 class LoginPage(BasePage):
     @allure.step("Открываем страницу входа")
     def open(self):
-        self.driver.get(urls.LOGIN_URL)  # ← заменяем на super().open(urls.LOGIN_URL)
+       
         super().open(urls.LOGIN_URL)
 
     @allure.step("Выполняем вход: email={email}, password={password}")
