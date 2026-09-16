@@ -28,7 +28,7 @@ env/
 
 # Тестирование и отчеты (Allure, pytest)
 .pytest_cache/
-allure-results/
+# allure-results/
 allure-report/
 coverage.xml
 .coverage
