@@ -5,7 +5,6 @@ from pages.base_page import BasePage
 from locators import MainPageLocators as MPL
 from locators import ConstructorLocators as CL
 from locators import ModalLocators as ML
-from seletools.actions import drag_and_drop
 
 
 class MainPage(BasePage):
@@ -25,11 +24,9 @@ class MainPage(BasePage):
     def is_modal_visible(self):
         return self.is_visible(ML.MODAL_WINDOW)
 
-    
-    @allure.step("Проверяем, что модальное окно закрыто") # навигация ингр
+    @allure.step("Проверяем, что модальное окно закрыто")
     def is_modal_closed(self):
         return self.is_not_visible(ML.MODAL_WINDOW)
-
 
     @allure.step("Получаем заголовок модального окна")
     def get_modal_title(self):
@@ -39,31 +36,30 @@ class MainPage(BasePage):
     def click_first_ingredient(self):
         self.click(CL.FIRST_INGREDIENT)
 
-    @allure.step("Нажимаем Оформить заказ и получаем реальный номер заказа")
+    @allure.step("Нажимаем Оформить заказ")
     def click_place_order(self):
         self.click(CL.CHECKOUT_BTN)
-
 
     @allure.step("Закрытие модального окна")
     def close_modal(self):
         self.click(ML.MODAL_CLOSE_BTN)
 
-    
     @allure.step("Получение значения счетчика ингредиента")
     def get_ingredient_counter(self):
         text = self.get_text(CL.INGREDIENT_COUNTER)
         return int(text)
-       
 
     @allure.step("Добавление ингредиента в заказ")
     def add_ingredient_via_drag(self):
         ingredient = self.wait_clickable(CL.FIRST_INGREDIENT)
         basket = self.wait_clickable(CL.BURGER_CONSTRUCTOR_BASKET)
-        drag_and_drop(self.driver, ingredient, basket)
-    
+       
+        self.drag_and_drop_element(ingredient, basket)
+
     @allure.step("Проверяем, что заголовок Соберите бургер не отображается")
     def is_constructor_header_not_displayed(self):
-        elements = self.driver.find_elements(*MPL.CONSTRUCTOR_HEADER)
+        
+        elements = self.find_elements(MPL.CONSTRUCTOR_HEADER)
         return len(elements) == 0
 
     @allure.step("Проверка отображения заголовка Конструктор")
@@ -75,5 +71,4 @@ class MainPage(BasePage):
         self.wait.until(lambda d: self.get_ingredient_counter() > expected_value)
         return self.get_ingredient_counter()
 
-    
 
