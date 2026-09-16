@@ -8,12 +8,13 @@ from pages.base_page import BasePage
 from locators import ModalLocators as ML
 from locators import LoginLocators as LL
 
+
 class LoginPage(BasePage):
     @allure.step("Открываем страницу входа")
     def open(self):
-        self.driver.get(urls.LOGIN_URL)
+        self.driver.get(urls.LOGIN_URL)  # ← заменяем на super().open(urls.LOGIN_URL)
+        super().open(urls.LOGIN_URL)
 
-    
     @allure.step("Выполняем вход: email={email}, password={password}")
     def login(self, email, password):
         self.send_keys(LL.EMAIL_FIELD_LOG, email)
@@ -21,12 +22,8 @@ class LoginPage(BasePage):
 
         self.wait.until(EC.invisibility_of_element_located(ML.OVERLAY))
 
-        button = self.wait.until(EC.element_to_be_clickable(LL.LOGIN_BUTTON))
-        self.driver.execute_script("arguments[0].click();", button)
+        self.click(LL.LOGIN_BUTTON)
 
-        start_url = self.driver.current_url
+        start_url = self.get_current_url()
         self.wait.until(EC.url_changes(start_url))
 
-       
-
-       
