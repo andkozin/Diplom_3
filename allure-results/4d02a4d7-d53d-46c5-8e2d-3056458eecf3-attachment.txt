@@ -1,0 +1,2 @@
+Код: 202
+Тело: {"success":true,"message":"User successfully removed"}
