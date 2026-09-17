@@ -1,0 +1,3 @@
+URL: https://stellarburgers.education-services.ru/api/auth/user
+Method: DELETE
+Token вывод первые 7: Bearer ...
