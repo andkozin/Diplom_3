@@ -21,7 +21,7 @@ class OrdersFeedPage(BasePage):
         digits = re.findall(r'\d+', text)
         return int(digits[0]) if digits else 0
 
-    @allure.story("Получаем значение счетчика Выполнено за сегодня")
+    @allure.step("Получаем значение счетчика Выполнено за сегодня") #тут story было
     def get_today_counter(self):
         text = self.get_text_content(FL.COUNTER_TODAY)
         digits = re.findall(r'\d+', text)
